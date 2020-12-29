@@ -1,11 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 function PizzaBlock({ name, imageUrl, price, types, sizes }) {
   const [activeType, setActiveType] = React.useState(types[0]);
   const [activeSize, setActiveSize] = React.useState(sizes[0]);
-
-  console.log(activeSize);
 
   const avaibleTypes = ["тонкое", "традиционное"];
   const avaibleSizes = [26, 30, 40];
@@ -21,7 +20,7 @@ function PizzaBlock({ name, imageUrl, price, types, sizes }) {
         <ul>
           {avaibleTypes.map((type, index) => (
             <li
-              key={`${type}_${index}`}
+              key={type}
               onClick={() => onSelectType(index)}
               className={classNames({
                 active: activeType === index,
@@ -33,10 +32,10 @@ function PizzaBlock({ name, imageUrl, price, types, sizes }) {
           ))}
         </ul>
         <ul>
-          {avaibleSizes.map((size, index) => (
+          {avaibleSizes.map((size) => (
             <li
-              key={`${size}_${index}`}
-              onClick={() => onSelectSize(index)}
+              key={size}
+              onClick={() => onSelectSize(size)}
               className={classNames({
                 active: activeSize === size,
                 disabled: !sizes.includes(size),
@@ -69,5 +68,18 @@ function PizzaBlock({ name, imageUrl, price, types, sizes }) {
     </div>
   );
 }
+
+PizzaBlock.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  types: PropTypes.arrayOf(PropTypes.number).isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+PizzaBlock.defaultProps = {
+  types: [],
+  sizes: [],
+};
 
 export default PizzaBlock;
