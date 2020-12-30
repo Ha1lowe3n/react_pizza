@@ -14,8 +14,6 @@ function App() {
       .then(({ data }) => setPizzas(data.pizzas))
   }, []);
 
-  console.log(pizzas);
-
   return (
     <div className="wrapper">
       <Header />
