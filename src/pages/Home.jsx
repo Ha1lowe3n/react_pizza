@@ -39,8 +39,8 @@ function Home() {
     dispatch(setCategory(index));
   }, []);
 
-  const onSelectSortType = React.useCallback((type) => {
-    dispatch(setSortBy(type));
+  const onSelectSortType = React.useCallback((obj) => {
+    dispatch(setSortBy(obj));
   }, []);
 
   return (
