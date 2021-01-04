@@ -4,21 +4,23 @@ const initialState = {
 }
 
 const filters = (state = initialState, action) => {
-  if (action.type === 'SET_SORT_BY') {
-    return {
-      ...state,
-      sortBy: action.payload
-    };
-  }
+  switch (action.type) {
+    case 'SET_SORT_BY':
+      return {
+        ...state,
+        sortBy: action.payload
+      };
 
-  if (action.type === 'SET_CATEGORY') {
-    return {
-      ...state,
-      category: action.payload
-    };
-  }
+    case 'SET_CATEGORY':
+      return {
+        ...state,
+        category: action.payload
+      };
 
-  return state;
+
+    default:
+      return state;
+  }
 }
 
 export default filters;
