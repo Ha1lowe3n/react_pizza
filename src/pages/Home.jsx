@@ -20,9 +20,9 @@ const categoryNames = [
 ];
 
 const sortItems = [
-  { name: "популярности", type: "popular" },
-  { name: "цене", type: "price" },
-  { name: "алфавиту", type: "alphabet" },
+  { name: "популярности", type: "popular", order: "desc" },
+  { name: "цене", type: "price", order: "desc" },
+  { name: "алфавиту", type: "name", order: "asc" },
 ];
 
 function Home() {
@@ -32,8 +32,8 @@ function Home() {
   const { category, sortBy } = useSelector(({ filters }) => filters);
 
   React.useEffect(() => {
-    fetchPizzas()(dispatch);
-  }, [category]);
+    fetchPizzas(sortBy, category)(dispatch);
+  }, [sortBy, category]);
 
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
@@ -52,7 +52,7 @@ function Home() {
           items={categoryNames}
         />
         <SortPopup
-          activeSortType={sortBy}
+          activeSortType={sortBy.type}
           items={sortItems}
           onClickSortType={onSelectSortType}
         />
