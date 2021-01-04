@@ -42,7 +42,11 @@ function Home() {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories onClickItem={onSelectCategory} items={categoryNames} />
+        <Categories
+          activeCategory={category}
+          onClickCategory={onSelectCategory}
+          items={categoryNames}
+        />
         <SortPopup items={sortItems} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
