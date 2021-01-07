@@ -34,8 +34,6 @@ function Home() {
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const { category, sortBy } = useSelector(({ filters }) => filters);
 
-  console.log(cartItems);
-
   React.useEffect(() => {
     fetchPizzas(sortBy, category)(dispatch);
   }, [sortBy, category]);
