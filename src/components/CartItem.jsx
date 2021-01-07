@@ -1,14 +1,23 @@
 import React from "react";
 
-function CartItem({ name, type, size }) {
+import Button from "./Button";
+
+function CartItem({
+  id,
+  name,
+  type,
+  size,
+  imageUrl,
+  totalPrice,
+  totalCount,
+  onRemoveItem,
+}) {
+  const handleRemoveClick = () => onRemoveItem(id);
+
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img
-          className="pizza-block__image"
-          src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-          alt="Pizza"
-        />
+        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       </div>
       <div className="cart__item-info">
         <h3>{name}</h3>
@@ -35,7 +44,7 @@ function CartItem({ name, type, size }) {
             />
           </svg>
         </div>
-        <b>2</b>
+        <b>{totalCount}</b>
         <div className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
@@ -56,10 +65,10 @@ function CartItem({ name, type, size }) {
         </div>
       </div>
       <div className="cart__item-price">
-        <b>770 ₽</b>
+        <b>{totalPrice} ₽</b>
       </div>
       <div className="cart__item-remove">
-        <div className="button button--outline button--circle">
+        <Button className="button--circle" outline onClick={handleRemoveClick}>
           <svg
             width="10"
             height="10"
@@ -76,7 +85,7 @@ function CartItem({ name, type, size }) {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </Button>
       </div>
     </div>
   );
