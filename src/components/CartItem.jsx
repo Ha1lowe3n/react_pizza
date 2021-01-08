@@ -11,8 +11,12 @@ function CartItem({
   totalPrice,
   totalCount,
   onRemoveItem,
+  onMinus,
+  onPlus,
 }) {
   const handleRemoveClick = () => onRemoveItem(id);
+  const handlePlusClick = () => onPlus(id);
+  const handleMinusClick = () => onMinus(id);
 
   return (
     <div className="cart__item">
@@ -26,7 +30,10 @@ function CartItem({
         </p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <div
+          className="button button--outline button--circle cart__item-count-minus"
+          onClick={handleMinusClick}
+        >
           <svg
             width="10"
             height="10"
@@ -45,7 +52,10 @@ function CartItem({
           </svg>
         </div>
         <b>{totalCount}</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <div
+          className="button button--outline button--circle cart__item-count-plus"
+          onClick={handlePlusClick}
+        >
           <svg
             width="10"
             height="10"

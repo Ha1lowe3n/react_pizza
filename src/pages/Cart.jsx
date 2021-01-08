@@ -3,7 +3,12 @@ import { CartItem } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { clearCart, removeCartItem } from "../redux/actions/cart";
+import {
+  clearCart,
+  removeCartItem,
+  plusCartItem,
+  minusCartItem,
+} from "../redux/actions/cart";
 
 import cartEmptyImg from "../assets/img/empty-cart.png";
 
@@ -11,9 +16,7 @@ function Cart() {
   const dispatch = useDispatch();
   const { totalCount, totalPrice, items } = useSelector(({ cart }) => cart);
 
-  const addedPizzas = Object.keys(items).map((key) => {
-    return items[key].items[0];
-  });
+  const addedPizzas = Object.keys(items).map((key) => items[key].items[0]);
 
   const onClearCart = () => {
     if (window.confirm("Вы действительно хотите очистить корзину?")) {
@@ -21,6 +24,8 @@ function Cart() {
     }
   };
 
+  const onPlusItem = (id) => dispatch(plusCartItem(id));
+  const onMinusItem = (id) => dispatch(minusCartItem(id));
   const onRemoveItem = (id) => dispatch(removeCartItem(id));
 
   return (
@@ -113,6 +118,8 @@ function Cart() {
                   totalPrice={items[id].totalPrice}
                   totalCount={items[id].items.length}
                   onRemoveItem={onRemoveItem}
+                  onPlus={onPlusItem}
+                  onMinus={onMinusItem}
                 />
               ))}
             </div>
